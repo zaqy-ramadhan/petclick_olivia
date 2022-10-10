@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Pet extends Model
 {
     use HasFactory;
-    protected $guarded = [
-        'id'
+    protected $fillable = [
+        'id',
+        'pet_name'
     ];
     public function pets()
     {

@@ -18,6 +18,9 @@ class AppointmentController extends Controller
      */
     public function index()
     {
+        return view('admin.appointment', [
+            "appointments" => Appointment::all()
+        ]);
     }
 
     /**
@@ -27,6 +30,7 @@ class AppointmentController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -85,7 +89,9 @@ class AppointmentController extends Controller
      */
     public function show(Appointment $appointment)
     {
-        //
+        return view('admin.appointment', [
+            "appointment" => $appointment
+        ]);
     }
 
     /**

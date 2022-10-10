@@ -3,8 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\appointmentController;
 use App\Http\Controllers\PetController;
-use App\Models\pet;
-use App\Models\Appointment;
+use App\Http\Controllers\serviceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,21 +57,60 @@ Route::get('/form', function () {
     return view('form');
 });
 
-Route::get('/scroll', function () {
-    return view('scrollnav');
+Route::get('/adm', function () {
+    return view('admin.admin');
+});
+
+Route::get('/adm-app', function () {
+    return view('admin.appointment');
+});
+
+Route::get('/adm-pet', function () {
+    return view('admin.pet');
+});
+
+Route::get('/adm-petedit', function () {
+    return view('admin.petedit');
+});
+
+Route::get('/adm-petcreate', function () {
+    return view('admin.petcreate');
+});
+
+Route::get('/adm-services', function () {
+    return view('admin.services');
+});
+
+Route::get('/adm-servicesedit', function () {
+    return view('admin.servicesedit');
+});
+
+Route::get('/adm-servicescreate', function () {
+    return view('admin.servicescreate');
 });
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::post('/homee', [App\Http\Controllers\AppointmentController::class, "store"]);
-// Route::get('/create1', [AppointmentController::class, "store"]);
+
 
 Route::post('/create1', [AppointmentController::class, "store"]);
-Route::match(['get', 'post'], '/', [AppointmentController::class, "store"]);
-Route::match(['get', 'post'], '/home', [AppointmentController::class, "store"]);
+Route::get('/adm-app', [appointmentController::class, "index"]);
+
 Route::get('/home', [petController::class, "index"]);
 Route::get('/', [petController::class, "index"]);
 Route::get('/consultation', [petController::class, "consultation"]);
 Route::get('/grooming', [petController::class, "grooming"]);
 Route::get('/vaccine', [petController::class, "vaccine"]);
 Route::get('/surgery', [petController::class, "surgery"]);
+Route::get('/adm-pet', [petController::class, "adm_pet"]);
+Route::get('/adm-petedit', [petController::class, "petedit"]);
+Route::resource('pets', petController::class);
+Route::get('/petedit_test/{id}', [petController::class, "peteditf"]);
+Route::put('/petedit_test/{id}', [petController::class, "update"]);
+Route::post('/petedit_create', [petController::class, "store"]);
+
+Route::resource('services', serviceController::class);
+Route::get('/adm-services', [serviceController::class, "index"]);
+Route::get('/servicesedit/{id}', [serviceController::class, "edit"]);
+Route::put('/servicesedit/{id}', [serviceController::class, "update"]);
+Route::post('/services_create', [serviceController::class, "store"]);

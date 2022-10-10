@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pet;
 use App\Http\Requests\StorePetRequest;
+use Illuminate\Http\Request;
 use App\Http\Requests\UpdatePetRequest;
 
 class PetController extends Controller
@@ -13,6 +14,13 @@ class PetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function indexs()
+    {
+        $data['pets'] = pet::orderBy('id', 'desc')->paginate(5);
+        return view('admin.pet', $data);
+    }
+
     public function index()
     {
         return view('home', [
@@ -48,6 +56,20 @@ class PetController extends Controller
         ]);
     }
 
+    public function adm_pet()
+    {
+        return view('admin.pet', [
+            "pets" => Pet::all()
+        ]);
+    }
+
+    public function tests()
+    {
+        return view('admin.appointment', [
+            "pets" => Pet::all()
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -66,7 +88,14 @@ class PetController extends Controller
      */
     public function store(StorePetRequest $request)
     {
-        //
+        if ($request->isMethod('post')) {
+            Pet::create([
+                'id' => $request->id,
+                'pet_name' => $request->name,
+            ]);
+            return redirect('/adm-pet');
+        }
+        return view('/adm-pet');
     }
 
     /**
@@ -90,7 +119,7 @@ class PetController extends Controller
      */
     public function edit(Pet $pet)
     {
-        //
+        return view('admin.petedit', compact('pet'));
     }
 
     /**
@@ -100,12 +129,21 @@ class PetController extends Controller
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePetRequest $request, Pet $pet)
+    public function update(Request $request, $id)
     {
-        //
+        // $request->validate([
+        //     'nama' => 'required',
+        //     'email' => 'required',
+        //     'alamat' => 'required',
+        // ]);
+        $pet = Pet::findOrFail($id);
+        $pet->id = $request->id;
+        $pet->pet_name = $request->name;
+        $pet->save();
+        return redirect('/adm-pet');
     }
 
-    /**
+    /** 
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Pet  $pet
@@ -113,6 +151,14 @@ class PetController extends Controller
      */
     public function destroy(Pet $pet)
     {
-        //
+        $pet->delete();
+        return redirect('/adm-pet');
+    }
+
+    public function peteditf(Request $request, $id)
+    {
+        $pet = Pet::findOrFail($id);
+        // dd($pet);
+        return view('admin.petedit', ['pet' => $pet]);
     }
 }
