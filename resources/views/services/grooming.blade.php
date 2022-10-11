@@ -91,7 +91,7 @@
   <div class="container centering mt-5">
     <div class="container m-5">
       <div class="container">
-        <p style="text-align: center">Our animal care workers are ready to take care of your animals gently with love like : bathing animals,take care of your pet's fur and etc</p>
+        <p style="text-align: center">Our animal care refers to the hygienic care and cleaning of animals, as well as the process by which the physical appearance of animals is improved for performances or other types of competition. An animal groomer is a person who makes a living by taking care of their animals.</p>
 
       </div>
       <div class="row m-5 centering">
@@ -105,7 +105,7 @@
           </div>
         </div>
         <div class="col-sm-3 centering mt-3 mx-4">
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente adipisci rem molestias. Dicta debitis, error doloribus dolore molestiae, recusandae quam aliquid qui cupiditate veniam laboriosam hic praesentium at earum nobis placeat, quidem vero iure. Nisi molestiae explicabo, nemo cumque expedita ut. Inventore aperiam aliquid in delectus dolor, nobis eaque dolorem.</p>
+          <p>Our animal care workers are ready to take care of your animals gently with love like : bathing animals,take care of your pet's fur and etc</p>
         </div>  
       </div>
     </div>

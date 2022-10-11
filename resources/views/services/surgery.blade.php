@@ -91,7 +91,7 @@
   <div class="container centering mt-5">
     <div class="container m-5">
       <div class="container">
-        <p style="text-align: center">Our veterinarians are very skilled in veterinary surgery and use the best sterile tools for your pets safety</p>
+        <p style="text-align: center">Veterinary surgery is surgery performed on animals by veterinarians, whereby the procedures fall into three broad categories: orthopaedics (bones, joints, muscles), soft tissue surgery (skin, body cavities, cardiovascular system, GI/urogenital/respiratory tracts), and neurosurgery</p>
 
       </div>
       <div class="row m-5 centering">
@@ -105,7 +105,7 @@
           </div>
         </div>
         <div class="col-sm-3 centering mt-3 mx-4">
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente adipisci rem molestias. Dicta debitis, error doloribus dolore molestiae, recusandae quam aliquid qui cupiditate veniam laboriosam hic praesentium at earum nobis placeat, quidem vero iure. Nisi molestiae explicabo, nemo cumque expedita ut. Inventore aperiam aliquid in delectus dolor, nobis eaque dolorem.</p>
+          <p>We are ready to provide veterinary surgery with veterinarians who are experts in the field of veterinary surgery. cases that can be handled are animal blindness, animal injuries, animal fractures, internal diseases, digestive problems, venereal problems in animals and etc.</p>
         </div>  
       </div>
     </div>

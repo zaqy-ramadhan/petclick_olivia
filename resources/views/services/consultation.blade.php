@@ -91,7 +91,10 @@
   <div class="container centering mt-5">
     <div class="container m-5">
       <div class="container">
-        <p style="text-align: center">Our veterinarians are ready to serve your consultation on your pet's problems and are very helpful for your pets problems</p>
+        <p style="text-align: center">Our veterinary consulting service is a process in an atmosphere of cooperation and relationship between
+                                      personally with the aim of solving a problem in the professional sphere of the person who
+                                      ask for a consultation. There are three elements in a consultation, namely the client, the person asking for it
+                                      consultancy, and consultant</p>
 
       </div>
       <div class="row m-5 centering">
@@ -105,7 +108,7 @@
           </div>
         </div>
         <div class="col-sm-3 centering mt-3 mx-4">
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente adipisci rem molestias. Dicta debitis, error doloribus dolore molestiae, recusandae quam aliquid qui cupiditate veniam laboriosam hic praesentium at earum nobis placeat, quidem vero iure. Nisi molestiae explicabo, nemo cumque expedita ut. Inventore aperiam aliquid in delectus dolor, nobis eaque dolorem.</p>
+          <p>Our veterinarians are ready to serve your consultation on your pet's problems and are very helpful for your pets problems such as animal breeding consultation, disease consultation, harmful animal consultation, beauty consultation, health consultation, pregnancy consultation and etc</p>
         </div>  
       </div>
     </div>

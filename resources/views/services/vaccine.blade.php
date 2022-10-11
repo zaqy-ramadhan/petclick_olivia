@@ -91,7 +91,7 @@
   <div class="container centering mt-5">
     <div class="container m-5">
       <div class="container">
-        <p style="text-align: center">Our veterinarians are ready to provide services such as health checks and vaccinations for your pet</p>
+        <p style="text-align: center">Medical check-up is a comprehensive health examination. Through this examination, it is hoped that a disease or health problem can be detected early. This test is also useful for planning appropriate treatment and treatment methods before disease develops and Animal vaccination is vaccination or administration of vaccines to animals to help the animal's immune system develop protection against infectious diseases.</p>
 
       </div>
       <div class="row m-5 centering">
@@ -105,7 +105,7 @@
           </div>
         </div>
         <div class="col-sm-3 centering mt-3 mx-4">
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente adipisci rem molestias. Dicta debitis, error doloribus dolore molestiae, recusandae quam aliquid qui cupiditate veniam laboriosam hic praesentium at earum nobis placeat, quidem vero iure. Nisi molestiae explicabo, nemo cumque expedita ut. Inventore aperiam aliquid in delectus dolor, nobis eaque dolorem.</p>
+          <p>We are ready to provide health checks and vaccinations for your animals. Vaccinations in our pet shop include rabies vaccine, parvovirus vaccine, parainfluenza vaccine, leptospirosis vaccine and etc. Our health checks are very credible and valid if your animal has an undetected disease because we have sophisticated tools to detect animal diseases</p>
         </div>  
       </div>
     </div>
