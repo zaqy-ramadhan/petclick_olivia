@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use App\Http\Requests\StoreappointmentRequest;
 use App\Http\Requests\UpdateappointmentRequest;
-
-
+use App\Models\Services;
+use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
@@ -18,8 +18,17 @@ class AppointmentController extends Controller
      */
     public function index()
     {
+        $app = Appointment::with(['user', 'pet', 'service', 'session', 'clinic'])->get();
         return view('admin.appointment', [
-            "appointments" => Appointment::all()
+            "apps" => $app
+        ]);
+    }
+
+    public function myapp()
+    {
+        $appointment = Appointment::with(['service', 'session', 'clinic'])->get();
+        return view('myappointment', [
+            "appointments" => $appointment
         ]);
     }
 
@@ -64,19 +73,14 @@ class AppointmentController extends Controller
         if ($request->isMethod('post')) {
             Appointment::create([
                 'user_id' => $request->user_id,
-                'address' => $request->address,
-                'city' => $request->city,
                 'app_date' => $request->app_date,
-                'session' => $request->session,
-                'branch' => $request->branch,
-                'notelp' => $request->notelp,
-                'petsex' => $request->petsex,
-                'petages' => $request->petages,
-                'petweights' => $request->petweights,
+                'session_id' => $request->session,
+                'clinic_id' => $request->branch,
                 'detail' => $request->detail,
                 'pet_id' => $request->pet_id,
+                'service_id' => $request->service,
             ]);
-            return redirect('/')->with('status', 'Data telah tersimpan di database');
+            return redirect('/')->with('status', 'New Data Added to Database');
         }
         return view('/home');
     }
@@ -100,9 +104,11 @@ class AppointmentController extends Controller
      * @param  \App\Models\Appointment  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Appointment $appointment)
+    public function edit(Appointment $appointment, $id)
     {
-        //
+        $appointment = Appointment::findOrFail($id);
+        // dd($pet);
+        return view('admin.appointmentedit', ['appointment' => $appointment]);
     }
 
     /**
@@ -112,9 +118,12 @@ class AppointmentController extends Controller
      * @param  \App\Models\Appointment  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAppointmentRequest $request, Appointment $appointment)
+    public function update(Request $request, $id)
     {
-        //
+        $appointment = Appointment::findOrFail($id);
+        $appointment->status = $request->status;
+        $appointment->save();
+        return redirect('/adm-app')->with('status', 'Status Updated');
     }
 
     /**
@@ -125,6 +134,7 @@ class AppointmentController extends Controller
      */
     public function destroy(Appointment $appointment)
     {
-        //
+        $appointment->delete();
+        return redirect('/adm-app')->with('statusdel', 'Data Deleted');
     }
 }

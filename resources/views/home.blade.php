@@ -47,10 +47,6 @@
             @if (Route::has('login'))
                   <div class="hidden fixed top-0 right-0 sm:block">
                       @auth
-                          {{-- <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                          @extends('layouts.app')
-                          @section('content')
-                          @endsection --}}
                           <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                               {{ Auth::user()->name }}
@@ -62,7 +58,8 @@
                                                document.getElementById('logout-form').submit();">
                                   {{ __('Logout') }}
                               </a>
-                              <a class="dropdown-item">My Appointement</a>
+                              <a class="dropdown-item" href="/myapp">My Appointement</a>
+                              <a class="dropdown-item" href="/myprofile">My Profile</a>
 
                               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                   @csrf
@@ -72,11 +69,6 @@
                           <li class="nav-item ms-2">
                             <a href="{{ route('login') }}" ><button type="button" class="btn btn-success rounded-pill">Login / Register</button></a>
                           </li>
-                          {{-- <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-  
-                          @if (Route::has('register'))
-                              <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                          @endif --}}
                       @endauth
                   </div>
               @endif
@@ -130,7 +122,7 @@
                 <option value="{{ Auth::user()->id }}" readonly>{{ Auth::user()->name }}</option>
               </select>
             </div>
-            <div class="mb-3">
+            {{-- <div class="mb-3">
               <label class="form-label"><Address></Address></label>
               <input name="address" type="text" class="form-control">
               <div class="form-text">Your Address</div>
@@ -139,7 +131,23 @@
             <label class="form-label">City</label>
               <input name="city" type="text" class="form-control">
               <div class="form-text">Input Your City Name</div>
+            </div> --}}
+            <div class="mb-3 mt-3">
+              <label class="form-label">Phone Number</label>
+              <select name="notelp" type="text" class="form-select" readonly aria-label="Default select example">
+                <option value="{{ Auth::user()->notelp }}" readonly>{{ Auth::user()->notelp }}</option>
+              </select>
+              {{-- <input name="notelp" type="text" class="form-control" value="{{ Auth::user()->notelp }}"> --}}
+              <div class="form-text">Input Your Phone Number</div>
             </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Select Services</label>
+          <select name="service" class="form-select" aria-label="Default select example">
+            @foreach($services as $service)
+            <option value="{{ $service->id }}">{{ $service->services_name }}</option>
+              @endforeach
+        </select>
           </div>
             <div class="mb-3">
               <label class="form-label">Appointment Date</label>
@@ -148,23 +156,18 @@
             <div class="mb-3">
               <label class="form-label">Select Session</label>
             <select name="session" class="form-select" aria-label="Default select example">
-            <option value="1">08:00-12:00 (1st Session)</option>
-            <option value="2">13:00-17:00 (2nd Session)</option>
-            <option value="3">18:00-22:00 (3rd Session)</option>
+              @foreach($sessions as $session)
+            <option value="{{ $session->id }}">{{ $session->time }}</option>
+            @endforeach
           </select>
             </div>
             <div class="mb-3">
               <label class="form-label">Select Branch</label>
               <select name="branch" class="form-select" aria-label="Default select example">
-              <option value="1">1st Branch</option>
-              <option value="2">2nd Branch</option>
-              <option value="3">3rd Branch</option>
+                @foreach($clinics as $clinic)
+              <option value="{{ $clinic->id }}">{{ $clinic->clinic_name }}</option>
+              @endforeach
             </select>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Phone Number</label>
-              <input name="notelp" type="text" class="form-control">
-              <div class="form-text">Iput Your Phone Number</div>
             </div>
             <div class="mb-3">
             <label class="form-label">Pet</label>
@@ -174,7 +177,7 @@
               @endforeach
           </select>
             </div>
-            <div class="mb-3">
+            {{-- <div class="mb-3">
             <label class="form-label">Pet Sex</label>
             <select name="petsex" class="form-select" aria-label="Default select example">
             <option value="1">Male</option>
@@ -190,7 +193,7 @@
               <label class="form-label">Pet Weights</label>
               <input name="petweights" type="number" class="form-control">
               <div class="form-text">Input Your Pet Weights (KG).</div>
-            </div>
+            </div> --}}
             <div class="mb-3">
             <label class="form-label">Current Complaint</label>
               <textarea name="detail" type="text" class="form-control" cols="30" rows="10"></textarea>
@@ -226,81 +229,44 @@
     <div class="container m-5">
         <p class="fs-1 fw-bolder centering" style="color: white;">OUR SERVICES</p>
         <div class="row m-5 centering">
-
-          <div class="col-sm-3 centering mt-2">
+          @foreach($services as $service)
+          <div class="col-sm-3 centering mt-2 mb-3">
             <div class="card shadow" style="width: 18rem; border-radius: 17px;">
-                <img src="https://cdn-prd.content.metamorphosis.com/wp-content/uploads/sites/2/2021/03/shutterstock_1503829781-1-768x512.jpg" class="card-img-top" alt="grooming" style="border-radius: 17px;">
+                <img src="{{ $service->img_link }}" class="card-img-top" alt="grooming" style="border-radius: 17px;">
                 <div class="card-body">
-                  <h5 class="card-title" style="color: #323D51">Healtch Check & Vaccinations</h5>
+                  <h5 class="card-title" style="color: #323D51">{{ $service->services_name }}</h5>
                   {{-- <p class="card-text" style="color: #323D51">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
                   {{-- <a href="#" class="btn btn-success">See details</a> --}}
                 </div>
-                <a href="/vaccine"><button class="btn btn-success ms-3 mb-3">See details</button></a>
+                <a href="{{ $service->srv_routes }}"><button class="btn btn-success ms-3 mb-3">See details</button></a>
                 {{-- <a href="#" class="btn btn-success">See details</a> --}}
               </div>
         </div>
-
-        <div class="col-sm-3 centering mt-2">
-            <div class="card shadow" style="width: 18rem; border-radius: 17px;">
-                <img src="https://d2zp5xs5cp8zlg.cloudfront.net/image-42128-800.jpg" alt="grooming" style="border-radius: 17px;">
-                <div class="card-body">
-                  <h5 class="card-title" style="color: #323D51">Small Surgery</h5>
-                  {{-- <p class="card-text" style="color: #323D51">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
-                  {{-- <a href="#" class="btn btn-success">See details</a> --}}
-                </div>
-                <a href="/surgery"><button class="btn btn-success ms-3 mb-3">See details</button></a>
-                {{-- <a href="#" class="btn btn-success">See details</a> --}}
-              </div>
-        </div>
-
-        <div class="col-sm-3 centering mt-2">
-            <div class="card shadow" style="width: 18rem; border-radius: 17px;">
-                <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" class="card-img-top" alt="grooming" style="border-radius: 17px;">
-                <div class="card-body">
-                  <h5 class="card-title" style="color: #323D51">Grooming</h5>
-                  {{-- <p class="card-text" style="color: #323D51">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
-                  {{-- <a href="#" class="btn btn-success">See details</a> --}}
-                </div>
-                <a href="/grooming"><button class="btn btn-success ms-3 mb-3">See details</button></a>
-                {{-- <a href="#" class="btn btn-success">See details</a> --}}
-              </div>
-        </div>
-
-        <div class="col-sm-3 centering mt-2">
-            <div class="card shadow" style="width: 18rem; border-radius: 17px;">
-                <img src="https://www.westerncape.gov.za/sites/www.westerncape.gov.za/files/boy-with-dog-at-vet.jpg" alt="grooming" style="border-radius: 17px;">
-                <div class="card-body">
-                  <h5 class="card-title" style="color: #323D51">Consultation</h5>
-                  {{-- <p class="card-text" style="color: #323D51">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
-                  {{-- <a href="#" class="btn btn-success">See details</a> --}}
-                </div>
-                <a href="/consultation"><button class="btn btn-success ms-3 mb-3">See details</button></a>
-                {{-- <a href="#" class="btn btn-success">See details</a> --}}
-              </div>
-        </div>
-            
+        @endforeach
         </div>
     </div>
   </div>
   
   {{-- content 3 --}}
-  <div id="gallery" class="container-fluid mt-5">
+  <div id="gallery" class="container mt-5">
     <h1 class="centering fs-1 fw-bolder" style="color: #016734;">GALLERY</h1>
     <div class="container p-5">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="https://images.unsplash.com/photo-1632236542159-809925d85fc0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="...">
+                <img src="https://images.unsplash.com/photo-1632236542159-809925d85fc0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="img_1">
               </div>
+              @foreach($galleries as $gallery)
               <div class="carousel-item">
-                <img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="...">
+                <img src="{{ $gallery->img_link }}" class="d-block w-100" alt="{{ $gallery->img_title }}">
               </div>
-              <div class="carousel-item">
+              @endforeach
+              {{-- <div class="carousel-item">
                 <img src="https://images.unsplash.com/photo-1599443015574-be5fe8a05783?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
                 <img src="https://images.unsplash.com/photo-1608220678046-22b22f2cde86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="...">
-              </div>
+              </div> --}}
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -316,33 +282,19 @@
 
   {{-- location --}}
 
-  <div id="location" class="container-fluid p-5">
+  <div id="location" class="container">
     <h1 class="centering fs-1 fw-bolder" style="color: #016734;">LOCATIONS</h1>
     <div class="card-group p-5 mx-5">
+      @foreach($clinics as $clinic)
         <div class="card">
-          <img src="https://i.pinimg.com/originals/43/db/a4/43dba4ad5630f8b11c8ce3097850c9b5.jpg" class="card-img-top" alt="...">
+          <img style="height: 250px" src="{{ $clinic->img_link }}" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Clinic 1</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            <a href="https://goo.gl/maps/wjYbKBDFLuu3Cygq5" target="_blank"><button type="button" class="btn btn-success">View Location</button></a>
+            <h5 class="card-title">{{ $clinic->clinic_name }}</h5>
+            <p class="card-text">{{ $clinic->clinic_address }}</p>
+            <a href="{{ $clinic->map_link }}" target="_blank"><button type="button" class="btn btn-success">View Location</button></a>
           </div>
         </div>
-        <div class="card">
-          <img src="https://archello.s3.eu-central-1.amazonaws.com/images/2020/03/17/Liqui-Group--Browns-Pet-Store-1920-0282.1584452538.8015.jpg" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Clinic 2</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            <a href="https://goo.gl/maps/7fjFBwTFtJm5jxAC6" target="_blank"><button type="button" class="btn btn-success">View Location</button></a>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://cdn1-production-images-kly.akamaized.net/-sidy4lZGmd6vN1J3YPe5fXdC3M=/1200x675/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2386727/original/094684900_1539850439-WhatsApp_Image_2018-10-18_at_15.03.59.jpeg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Clinic 3</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            <a href="https://goo.gl/maps/97QCcfqZGXNrohMa6" target="_blank"><button type="button" class="btn btn-success">View Location</button></a>
-        </div>
-      </div>
+        @endforeach
     </div>
   </div>
 

@@ -17,17 +17,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('pet_id')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('address');
-            $table->string('city');
+            $table->foreignId('service_id')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('clinic_id')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('session_id')->onUpdate('cascade')->onDelete('cascade');
             $table->date('app_date');
-            $table->integer('session');
-            $table->integer('branch');
-            $table->string('notelp');
-            // $table->string('pet');
-            $table->integer('petsex');
-            $table->integer('petages');
-            $table->integer('petweights');
             $table->string('detail');
+            $table->string('status')->default('Appointment Scheduled');
             $table->timestamps();
         });
     }

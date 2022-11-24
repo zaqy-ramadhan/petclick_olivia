@@ -21,6 +21,13 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('notelp')->nullable();
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('role', 16)->default('customer')->after('password');
         });
     }
 

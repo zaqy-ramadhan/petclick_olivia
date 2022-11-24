@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('services_name');
             $table->string('img_link');
+            $table->string('srv_routes');
             $table->timestamps();
         });
     }

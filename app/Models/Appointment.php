@@ -10,20 +10,17 @@ class Appointment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'first_name',
-        'last_name',
         'address',
         'city',
         'app_date',
-        'session',
-        'branch',
+        'session_id',
+        'clinic_id',
         'notelp',
         'pet_id',
-        'petsex',
-        'petages',
-        'petweights',
         'user_id',
-        'detail'
+        'detail',
+        'service_id',
+        'status'
     ];
 
     public function appointments()
@@ -38,6 +35,21 @@ class Appointment extends Model
 
     public function pet()
     {
-        return $this->belongsTo(Services::class);
+        return $this->belongsTo(Pet::class);
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
+
+    public function clinic()
+    {
+        return $this->belongsTo(Clinic::class);
+    }
+
+    public function session()
+    {
+        return $this->belongsTo(session::class);
     }
 }

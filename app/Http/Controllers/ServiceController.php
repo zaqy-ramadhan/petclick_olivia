@@ -17,9 +17,16 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $data['services'] = service::orderBy('id', 'desc')->paginate(5);
+        $data['services'] = service::orderBy('id')->paginate(5);
         return view('admin.services', $data);
     }
+
+    // public function indexhome()
+    // {
+    //     return view('home', [
+    //         "services" => service::all()
+    //     ]);
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -45,8 +52,9 @@ class ServiceController extends Controller
                 'id' => $request->id,
                 'services_name' => $request->name,
                 'img_link' => $request->img_link,
+                'srv_routes' => $request->routes,
             ]);
-            return redirect('/adm-services');
+            return redirect('/adm-services')->with('status', 'New Data Added to Database');
         }
         return view('/adm-services');
     }
@@ -91,7 +99,7 @@ class ServiceController extends Controller
         $service->services_name = $request->name;
         $service->img_link = $request->img_link;
         $service->save();
-        return redirect('/adm-services');
+        return redirect('/adm-services')->with('status', 'Changes Saved');
     }
 
     /**
@@ -103,6 +111,6 @@ class ServiceController extends Controller
     public function destroy(service $service)
     {
         $service->delete();
-        return redirect('/adm-services');
+        return redirect('/adm-services')->with('statusdel', 'Data Deleted');
     }
 }

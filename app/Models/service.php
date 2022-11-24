@@ -11,7 +11,8 @@ class service extends Model
     protected $fillable = [
         'id',
         'services_name',
-        'img_link'
+        'img_link',
+        'srv_routes'
     ];
     public function services()
     {

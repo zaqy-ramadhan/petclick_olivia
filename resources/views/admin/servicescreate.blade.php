@@ -13,7 +13,7 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Petclick Admin</a>
+        <a class="navbar-brand ps-3" href="/adm"><img class="img-fluid me-3" src="{{ URL::to('/assets/petclick_logo-light.png') }}" style="width: 100px">Admin</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
@@ -56,9 +56,9 @@
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="/adm-app">Appointment Table</a>
-                                <a class="nav-link" href="layout-sidenav-light.html">Services Table</a>
-                                <a class="nav-link" href="layout-sidenav-light.html">Clinic Table</a>
-                                <a class="nav-link" href="layout-sidenav-light.html">User Table</a>
+                                <a class="nav-link" href="/adm-services">Services Table</a>
+                                <a class="nav-link" href="/adm">Clinic Table</a>
+                                <a class="nav-link" href="/adm">User Table</a>
                                 <a class="nav-link" href="/adm-pet">Pet Table</a>
                             </nav>
                         </div>
@@ -113,6 +113,13 @@
                                             @error('name')
                                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                             @enderror
+                                            <div class="form-group mt-2">
+                                                <strong >Routes:</strong>
+                                                    <input type="text" name="routes" class="form-control mt-2" placeholder="Insert Routes">
+                                                @error('name')
+                                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -56,7 +56,8 @@
                                                document.getElementById('logout-form').submit();">
                                   {{ __('Logout') }}
                               </a>
-                              <a class="dropdown-item">My Appointement</a>
+                              <a class="dropdown-item" href="/myapp">My Appointement</a>
+                              <a class="dropdown-item" href="/myprofile">My Profile</a>
 
                               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                   @csrf
@@ -104,7 +105,7 @@
             <div class="card-body">
               <h5 class="card-title" style="color: #323D51">Consultation</h5>
             </div>
-            <a><button class="btn btn-success ms-3 mb-3" data-bs-toggle="modal" data-bs-target="#appointmentModal" >Make Appointement</button></a>
+            <a><button class="btn btn-success ms-3 mb-3" data-bs-toggle="modal" data-bs-target="#appointmentModal">Make Appointement</button></a>
           </div>
         </div>
         <div class="col-sm-3 centering mt-3 mx-4">
@@ -158,7 +159,7 @@
                   <option value="{{ Auth::user()->id }}" readonly>{{ Auth::user()->name }}</option>
                 </select>
               </div>
-              <div class="mb-3">
+              {{-- <div class="mb-3">
                 <label class="form-label"><Address></Address></label>
                 <input name="address" type="text" class="form-control">
                 <div class="form-text">Your Address</div>
@@ -167,7 +168,23 @@
               <label class="form-label">City</label>
                 <input name="city" type="text" class="form-control">
                 <div class="form-text">Input Your City Name</div>
+              </div> --}}
+              <div class="mb-3 mt-3">
+                <label class="form-label">Phone Number</label>
+                <select name="notelp" type="text" class="form-select" readonly aria-label="Default select example">
+                  <option value="{{ Auth::user()->notelp }}" readonly>{{ Auth::user()->notelp }}</option>
+                </select>
+                {{-- <input name="notelp" type="text" class="form-control" value="{{ Auth::user()->notelp }}"> --}}
+                <div class="form-text">Input Your Phone Number</div>
               </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Select Services</label>
+            <select name="service" class="form-select" aria-label="Default select example">
+              @foreach($services as $service)
+              <option value="{{ $service->id }}">{{ $service->services_name }}</option>
+                @endforeach
+          </select>
             </div>
               <div class="mb-3">
                 <label class="form-label">Appointment Date</label>
@@ -176,23 +193,18 @@
               <div class="mb-3">
                 <label class="form-label">Select Session</label>
               <select name="session" class="form-select" aria-label="Default select example">
-              <option value="1">08:00-12:00 (1st Session)</option>
-              <option value="2">13:00-17:00 (2nd Session)</option>
-              <option value="3">18:00-22:00 (3rd Session)</option>
+                @foreach($sessions as $session)
+              <option value="{{ $session->id }}">{{ $session->time }}</option>
+              @endforeach
             </select>
               </div>
               <div class="mb-3">
                 <label class="form-label">Select Branch</label>
                 <select name="branch" class="form-select" aria-label="Default select example">
-                <option value="1">1st Branch</option>
-                <option value="2">2nd Branch</option>
-                <option value="3">3rd Branch</option>
+                  @foreach($clinics as $clinic)
+                <option value="{{ $clinic->id }}">{{ $clinic->clinic_name }}</option>
+                @endforeach
               </select>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Phone Number</label>
-                <input name="notelp" type="text" class="form-control">
-                <div class="form-text">Iput Your Phone Number</div>
               </div>
               <div class="mb-3">
               <label class="form-label">Pet</label>
@@ -202,7 +214,7 @@
                 @endforeach
             </select>
               </div>
-              <div class="mb-3">
+              {{-- <div class="mb-3">
               <label class="form-label">Pet Sex</label>
               <select name="petsex" class="form-select" aria-label="Default select example">
               <option value="1">Male</option>
@@ -218,7 +230,7 @@
                 <label class="form-label">Pet Weights</label>
                 <input name="petweights" type="number" class="form-control">
                 <div class="form-text">Input Your Pet Weights (KG).</div>
-              </div>
+              </div> --}}
               <div class="mb-3">
               <label class="form-label">Current Complaint</label>
                 <textarea name="detail" type="text" class="form-control" cols="30" rows="10"></textarea>

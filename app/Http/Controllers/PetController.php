@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pet;
+use App\Models\service;
+use App\Models\Gallery;
+use App\Models\Clinic;
+use App\Models\Session;
 use App\Http\Requests\StorePetRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdatePetRequest;
@@ -17,42 +21,58 @@ class PetController extends Controller
 
     public function indexs()
     {
-        $data['pets'] = pet::orderBy('id', 'desc')->paginate(5);
+        $data['pets'] = Pet::orderBy('id')->paginate(5);
         return view('admin.pet', $data);
     }
 
     public function index()
     {
         return view('home', [
-            "pets" => Pet::all()
+            "pets" => Pet::all(),
+            "services" => service::all(),
+            "galleries" => Gallery::all(),
+            "clinics" => Clinic::all(),
+            "sessions" => Session::all()
         ]);
     }
 
     public function grooming()
     {
         return view('services.grooming', [
-            "pets" => Pet::all()
+            "pets" => Pet::all(),
+            "services" => service::all(),
+            "clinics" => Clinic::all(),
+            "sessions" => Session::all()
         ]);
     }
 
     public function vaccine()
     {
         return view('services.vaccine', [
-            "pets" => Pet::all()
+            "pets" => Pet::all(),
+            "services" => service::all(),
+            "clinics" => Clinic::all(),
+            "sessions" => Session::all()
         ]);
     }
 
     public function surgery()
     {
         return view('services.surgery', [
-            "pets" => Pet::all()
+            "pets" => Pet::all(),
+            "services" => service::all(),
+            "clinics" => Clinic::all(),
+            "sessions" => Session::all()
         ]);
     }
 
     public function consultation()
     {
         return view('services.consultation', [
-            "pets" => Pet::all()
+            "pets" => Pet::all(),
+            "services" => service::all(),
+            "clinics" => Clinic::all(),
+            "sessions" => Session::all()
         ]);
     }
 
@@ -93,7 +113,7 @@ class PetController extends Controller
                 'id' => $request->id,
                 'pet_name' => $request->name,
             ]);
-            return redirect('/adm-pet');
+            return redirect('/adm-pet')->with('status', 'New Data Added to Database');
         }
         return view('/adm-pet');
     }
@@ -152,13 +172,13 @@ class PetController extends Controller
     public function destroy(Pet $pet)
     {
         $pet->delete();
-        return redirect('/adm-pet');
+        return redirect('/adm-pet')->with('statusdel', 'Data Deleted');
     }
 
     public function peteditf(Request $request, $id)
     {
         $pet = Pet::findOrFail($id);
         // dd($pet);
-        return view('admin.petedit', ['pet' => $pet]);
+        return view('admin.petedit', ['pet' => $pet])->with('status', 'Changes Saved');
     }
 }
