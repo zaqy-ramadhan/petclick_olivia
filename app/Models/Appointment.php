@@ -40,16 +40,16 @@ class Appointment extends Model
 
     public function service()
     {
-        return $this->belongsTo(Service::class);
+        return $this->belongsTo(service::class);
     }
 
     public function clinic()
     {
-        return $this->belongsTo(Clinic::class);
+        return $this->belongsTo(clinic::class);
     }
 
     public function session()
     {
-        return $this->belongsTo(session::class);
+        return $this->belongsTo(Session::class);
     }
 }

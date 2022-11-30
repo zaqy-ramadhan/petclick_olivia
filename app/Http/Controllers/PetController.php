@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pet;
 use App\Models\service;
 use App\Models\Gallery;
-use App\Models\Clinic;
+use App\Models\clinic;
 use App\Models\Session;
 use App\Http\Requests\StorePetRequest;
 use Illuminate\Http\Request;
@@ -31,7 +31,7 @@ class PetController extends Controller
             "pets" => Pet::all(),
             "services" => service::all(),
             "galleries" => Gallery::all(),
-            "clinics" => Clinic::all(),
+            "clinics" => clinic::all(),
             "sessions" => Session::all()
         ]);
     }
@@ -41,7 +41,7 @@ class PetController extends Controller
         return view('services.grooming', [
             "pets" => Pet::all(),
             "services" => service::all(),
-            "clinics" => Clinic::all(),
+            "clinics" => clinic::all(),
             "sessions" => Session::all()
         ]);
     }
@@ -51,7 +51,7 @@ class PetController extends Controller
         return view('services.vaccine', [
             "pets" => Pet::all(),
             "services" => service::all(),
-            "clinics" => Clinic::all(),
+            "clinics" => clinic::all(),
             "sessions" => Session::all()
         ]);
     }
@@ -61,7 +61,7 @@ class PetController extends Controller
         return view('services.surgery', [
             "pets" => Pet::all(),
             "services" => service::all(),
-            "clinics" => Clinic::all(),
+            "clinics" => clinic::all(),
             "sessions" => Session::all()
         ]);
     }
@@ -71,7 +71,7 @@ class PetController extends Controller
         return view('services.consultation', [
             "pets" => Pet::all(),
             "services" => service::all(),
-            "clinics" => Clinic::all(),
+            "clinics" => clinic::all(),
             "sessions" => Session::all()
         ]);
     }
