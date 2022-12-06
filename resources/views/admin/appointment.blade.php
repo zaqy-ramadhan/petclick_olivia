@@ -5,7 +5,6 @@
     <div class="card mt-4 mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            Data Table Example
         </div>
         @if(session('status'))
         <div class="alert alert-success mb-1 mt-1">
@@ -15,42 +14,43 @@
         {{ session('statusdel') }}</div>
         @endif
         <div class="card-body">
-<table class="table table-bordered" id="datatablesSimple">
-<tr>
-<th>App_ID</th>
-<th>User</th>
-<th>Services</th>
-<th>Date</th>
-<th>Session</th>
-<th>Pet</th>
-<th>Clinic</th>
-<th>Detail</th>
-<th>Status</th>
-<th>Action</th>
-</tr>
-@foreach ($apps as $app)
-<tr>
-<td>{{ $app->id }}</td>
-<td>{{ $app->user['name'] }}</td>
-<td>{{ $app->service['services_name'] }}</td>
-<td>{{ $app->app_date }}</td>
-<td>{{ $app->session['time'] }}</td>
-<td>{{ $app->pet['pet_name'] }}</td>
-<td>{{ $app->clinic['clinic_name'] }}</td>
-<td>{{ $app->detail }}</td>
-<td>{{ $app->status }}</td>
-<td>
-    <a class="btn btn-primary" href="appedit/{{ $app->id }}">Change Status</a>
-    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delmodal">Delete</button>
-</td>
-</tr>
-@endforeach
-</table>
-{{-- <button type="submit" class="btn btn-success">Save</button>
-</form> --}}
-        </div>
-    </div>
-</div>
+          <a href="/app-recap" target="_blank" class="btn btn-success mb-3">Recap all data</a>
+          <table class="table table-bordered" id="datatablesSimple">
+          <tr>
+          <th>App_ID</th>
+          <th>User</th>
+          <th>Services</th>
+          <th>Date</th>
+          <th>Session</th>
+          <th>Pet</th>
+          <th>Clinic</th>
+          <th>Detail</th>
+          <th>Status</th>
+          <th>Action</th>
+          </tr>
+          @foreach ($apps as $app)
+          <tr>
+          <td>{{ $app->id }}</td>
+          <td>{{ $app->user['name'] }}</td>
+          <td>{{ $app->service['services_name'] }}</td>
+          <td>{{ $app->app_date }}</td>
+          <td>{{ $app->session['time'] }}</td>
+          <td>{{ $app->pet['pet_name'] }}</td>
+          <td>{{ $app->clinic['clinic_name'] }}</td>
+          <td>{{ $app->detail }}</td>
+          <td>{{ $app->status }}</td>
+          <td>
+              <a class="btn btn-primary" href="appedit/{{ $app->id }}">Change Status</a>
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delmodal">Delete</button>
+          </td>
+          </tr>
+          @endforeach
+          </table>
+          {{-- <button type="submit" class="btn btn-success">Save</button>
+          </form> --}}
+                  </div>
+              </div>
+          </div>
 
 {{-- modal --}}
 <div class="modal fade" id="delmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

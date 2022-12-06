@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\clinic;
+use App\Models\Appointment;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Carbon;
 
 class userController extends Controller
 {
@@ -14,6 +17,27 @@ class userController extends Controller
             "users" => User::all()
         ]);
     }
+
+    public function admin()
+    {
+        $app = Appointment::with(['user', 'pet', 'service', 'session', 'clinic'])->get();
+        $currdate = Carbon::now("Asia/Jakarta")->format('Y-m-d');
+        return view('admin.admin', [
+            "users" => User::all(),
+            "clinics" => clinic::all(),
+            "apps" => $app,
+            "date" => Carbon::now("Asia/Jakarta")->format('l, d-m-Y'),
+            "currdate" => $currdate
+        ]);
+    }
+
+    // public function show()
+    // {
+    //     $app = Appointment::with(['user', 'pet', 'service', 'session', 'clinic'])->get();
+    //     return view('admin.admin', [
+    //         "appss" => $app
+    //     ]);
+    // }
 
     public function store(Request $request)
     {
@@ -58,10 +82,9 @@ class userController extends Controller
         return redirect('/adm-user');
     }
 
-    public function edit(User $user, $id)
+    public function edit($id)
     {
         $user = User::findOrFail($id);
-        // dd($pet);
         return view('profile', ['user' => $user])->with('status', 'Changes Saved');
     }
 

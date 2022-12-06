@@ -70,6 +70,7 @@ Route::get('/myapp', function () {
 });
 
 
+
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -81,9 +82,6 @@ Route::get('/vaccine', [PetController::class, "vaccine"]);
 Route::get('/surgery', [PetController::class, "surgery"]);
 Route::post('/create1', [AppointmentController::class, "store"]);
 Route::get('/myapp', [AppointmentController::class, "myapp"]);
-
-Route::get('/profileedit/{id}', [userController::class, "edit"]);
-Route::put('/profileedit/{id}', [userController::class, "update"]);
 
 // Route::middleware(['auth', 'role:customer'])->group(function () {
 //     Route::get('/profileedit/{id}', [userController::class, "edit"]);
@@ -156,11 +154,26 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         return view('admin.usercreate');
     });
 
-    Route::get('/adm-app', [AppointmentController::class, "index"]);
+    Route::get('/adm-session', function () {
+        return view('admin.session');
+    });
+
+    Route::get('/adm-sessioncreate', function () {
+        return view('admin.sessioncreate');
+    });
+
+    Route::get('/app-recap', function () {
+        return view('admin.app-recap');
+    });
 
     Route::get('/adm-pet', [PetController::class, "adm_pet"]);
     Route::get('/adm-petedit', [petController::class, "petedit"]);
     Route::resource('pets', PetController::class);
+    Route::get('/petedit_test/{id}', [PetController::class, "peteditf"]);
+    Route::put('/petedit_test/{id}', [PetController::class, "update"]);
+    Route::post('/petedit_create', [PetController::class, "store"]);
+
+    Route::resource('session', PetController::class);
     Route::get('/petedit_test/{id}', [PetController::class, "peteditf"]);
     Route::put('/petedit_test/{id}', [PetController::class, "update"]);
     Route::post('/petedit_create', [PetController::class, "store"]);
@@ -194,6 +207,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/useredit/{id}', [userController::class, "editadm"]);
     Route::put('/useredit/{id}', [userController::class, "updateadm"]);
     Route::post('/user_create', [userController::class, "store"]);
+    Route::get('/adm', [userController::class, "admin"]);
+    // Route::get('/adm', [userController::class, "show"]);
 
     // Route::get('/profileedit/{id}', [userController::class, "edit"]);
     // Route::put('/profileedit/{id}', [userController::class, "update"]);
@@ -201,4 +216,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('appointment', AppointmentController::class);
     Route::get('/appedit/{id}', [AppointmentController::class, "edit"]);
     Route::put('/appedit/{id}', [AppointmentController::class, "update"]);
+    Route::get('/adm-app', [AppointmentController::class, "index"]);
+    Route::get('/app-recap', [AppointmentController::class, "recap"]);
 });

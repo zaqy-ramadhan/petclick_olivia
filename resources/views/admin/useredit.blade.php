@@ -20,14 +20,14 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group mt-2">
                                             <strong >User Name:</strong>
-                                                <input type="text" name="name" value="{{ $user->name }}" class="form-control mt-2" placeholder="User Name">
+                                                <input type="text" name="name" value="{{ $user->name }}" class="form-control mt-2" placeholder="User Name" required>
                                             @error('name')
                                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group mt-2">
                                             <strong >User Email:</strong>
-                                                <input type="text" name="email" value="{{ $user->email }}" class="form-control mt-2" placeholder="User Email">
+                                                <input type="text" name="email" value="{{ $user->email }}" class="form-control mt-2" placeholder="User Email" required>
                                             @error('name')
                                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                             @enderror
@@ -55,7 +55,10 @@
                                         </div>
                                         <div class="form-group mt-2">
                                             <strong >User Role:</strong>
-                                                <input type="text" name="role" value="{{ $user->role}}" class="form-control mt-2" placeholder="User Role">
+                                            <select name="role" id="" class="form-select mt-2">
+                                                <option value="customer">Customer</option>
+                                                <option value="admin">Admin</option>
+                                            </select>
                                             @error('name')
                                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                             @enderror

@@ -19,35 +19,35 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong >Clinic ID:</strong>
-                                <input type="text" name="id" class="form-control mt-2" placeholder="Image ID">
+                                <input type="text" name="id" class="form-control mt-2" placeholder="Image ID" required>
                             @error('id')
                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group mt-2">
                             <strong >Clinic Name:</strong>
-                                <input type="text" name="clinic_name" class="form-control mt-2" placeholder="Clinic Name">
+                                <input type="text" name="clinic_name" class="form-control mt-2" placeholder="Clinic Name" required>
                             @error('name')
                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group mt-2">
                             <strong >Clinic Address:</strong>
-                                <input type="text" name="clinic_address" class="form-control mt-2" placeholder="Clinic Address">
+                                <input type="text" name="clinic_address" class="form-control mt-2" placeholder="Clinic Address" required>
                             @error('name')
                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group mt-2">
                             <strong >Image Link:</strong>
-                                <input type="text" name="img_link" class="form-control mt-2" placeholder="Image Link">
+                                <input type="text" name="img_link" class="form-control mt-2" placeholder="Image Link" required>
                             @error('name')
                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group mt-2">
                             <strong >Map Link:</strong>
-                                <input type="text" name="map_link" class="form-control mt-2" placeholder="Map Link">
+                                <input type="text" name="map_link" class="form-control mt-2" placeholder="Map Link" required>
                             @error('name')
                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror

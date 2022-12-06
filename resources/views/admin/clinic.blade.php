@@ -34,7 +34,7 @@
                 <td>{{ $clinic->clinic_address }}</td>
                 <td><img style="height: 100px" src="{{ $clinic->img_link }}"></td>
                 <td>
-                    <a class="btn btn-primary" href="galleryedit/{{ $clinic->id }}">Edit</a>
+                    <a class="btn btn-primary" href="clinicedit/{{ $clinic->id }}">Edit</a>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delmodal">Delete</button>
                 </td>
                 </tr>

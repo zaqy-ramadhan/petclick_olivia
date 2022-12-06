@@ -53,14 +53,13 @@
                           </a>
 
                           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="{{ route('logout') }}"
-                                 onclick="event.preventDefault();
-                                               document.getElementById('logout-form').submit();">
-                                  {{ __('Logout') }}
-                              </a>
                               <a class="dropdown-item" href="/myapp">My Appointement</a>
                               <a class="dropdown-item" href="/myprofile">My Profile</a>
-
+                              <a class="dropdown-item" href="{{ route('logout') }}"
+                              onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                               {{ __('Logout') }}
+                              </a>
                               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                   @csrf
                               </form>
@@ -118,7 +117,7 @@
             <div class="col-md-6">
               <label class="form-label">Username</label>
               {{-- <input name="user_id" type="text" class="form-control" readonly value="{{ Auth::user()->id }}" placeholder="{{ Auth::user()->name}}"> --}}
-              <select name="user_id" type="text" class="form-select" readonly aria-label="Default select example">
+              <select name="user_id" type="text" class="form-select" readonly aria-label="Default select example" required>
                 <option value="{{ Auth::user()->id }}" readonly>{{ Auth::user()->name }}</option>
               </select>
             </div>
@@ -151,7 +150,7 @@
           </div>
             <div class="mb-3">
               <label class="form-label">Appointment Date</label>
-              <input name="app_date" type="date" class="form-control">
+              <input name="app_date" type="date" class="form-control" required>
             </div>
             <div class="mb-3">
               <label class="form-label">Select Session</label>
@@ -177,26 +176,9 @@
               @endforeach
           </select>
             </div>
-            {{-- <div class="mb-3">
-            <label class="form-label">Pet Sex</label>
-            <select name="petsex" class="form-select" aria-label="Default select example">
-            <option value="1">Male</option>
-            <option value="2">Female</option>
-            </select>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Pet Ages</label>
-              <input name="petages" type="number" class="form-control">
-              <div class="form-text">Input Your Pet Ages (Months)</div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Pet Weights</label>
-              <input name="petweights" type="number" class="form-control">
-              <div class="form-text">Input Your Pet Weights (KG).</div>
-            </div> --}}
             <div class="mb-3">
             <label class="form-label">Current Complaint</label>
-              <textarea name="detail" type="text" class="form-control" cols="30" rows="10"></textarea>
+              <textarea name="detail" type="text" class="form-control" cols="30" rows="10" required></textarea>
               {{-- <input name="detail" type="text" class="form-control"> --}}
               <div class="form-text">Describe Your Pet's Complaint</div>
             </div>
@@ -217,15 +199,17 @@
 </div>
 
   {{-- content 1 --}}
-  <div id="about" class="container-fluid mt-5 mb-5">
+  <div id="about" class="p-5"></div>
+  <div class="container-fluid">
     <p class="fs-1 fw-bolder centering" style="color: #016734;">ABOUT US</p>
-    <div class="container p-4" style="text-align: center">
+    <div class="container p-4" style="font-size: 20px;text-align: center;">
         <p>We provide good service to your pets and provide excellent facilities, we also have experienced veterinarians who are ready to heal your animals safely and well and are ready to serve consultations on your animal problems. We also provide good and very soft grooming facilities for your animals and uses very sterile tools and uses excellent grooming materials for groom your pets with love and care.</p>
     </div>
   </div>
 
   {{-- content 2 --}}
-  <div id="services" class="container-fluid fb-parallax centering">
+  <div id="services" class="mt-5 p-3"></div>
+  <div class="container-fluid fb-parallax centering">
     <div class="container m-5">
         <p class="fs-1 fw-bolder centering" style="color: white;">OUR SERVICES</p>
         <div class="row m-5 centering">
@@ -261,12 +245,6 @@
                 <img src="{{ $gallery->img_link }}" class="d-block w-100" alt="{{ $gallery->img_title }}">
               </div>
               @endforeach
-              {{-- <div class="carousel-item">
-                <img src="https://images.unsplash.com/photo-1599443015574-be5fe8a05783?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="https://images.unsplash.com/photo-1608220678046-22b22f2cde86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="...">
-              </div> --}}
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -284,16 +262,18 @@
 
   <div id="location" class="container">
     <h1 class="centering fs-1 fw-bolder" style="color: #016734;">LOCATIONS</h1>
-    <div class="card-group p-5 mx-5">
+    <div class="row m-5 centering">
       @foreach($clinics as $clinic)
-        <div class="card">
-          <img style="height: 250px" src="{{ $clinic->img_link }}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{ $clinic->clinic_name }}</h5>
-            <p class="card-text">{{ $clinic->clinic_address }}</p>
-            <a href="{{ $clinic->map_link }}" target="_blank"><button type="button" class="btn btn-success">View Location</button></a>
-          </div>
-        </div>
+        <div class="col-sm-3 centering mt-2 mb-3">
+          <div class="card shadow" style="width: 18rem; border-radius: 17px;">
+              <img style="height: 200px; border-radius:15px;" src="{{ $clinic->img_link }}" class="card-img-top" alt="grooming" style="border-radius: 17px;">
+              <div class="card-body">
+                <h5 class="card-title">{{ $clinic->clinic_name }}</h5>
+                <p class="card-text">{{ $clinic->clinic_address }}</p>
+              </div>
+              <a href="{{ $clinic->map_link }}" target="_blank"><button class="btn btn-success ms-3 mb-3">View Location</button></a>
+            </div>
+      </div>
         @endforeach
     </div>
   </div>

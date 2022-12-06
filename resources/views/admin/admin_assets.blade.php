@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css2/styles-admin.css') }}">
     <link rel="stylesheet" href="{{ asset('css/cssku.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css">
     <script src="{{ asset('https://use.fontawesome.com/releases/v6.1.0/js/all.js') }}" crossorigin="anonymous"></script>
 </head>
 @if (Route::has('login'))
@@ -69,6 +71,7 @@
                                 <a class="nav-link" href="/adm-user">User Table</a>
                                 <a class="nav-link" href="/adm-pet">Pet Table</a>
                                 <a class="nav-link" href="/adm-gallery">Gallery Table</a>
+                                <a class="nav-link" href="/adm-session">Session Table</a>
                             </nav>
                         </div>
                     </div>
@@ -89,11 +92,6 @@
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
                         <div class="text-muted">Copyright &copy; Petclick 2022</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
                     </div>
                 </div>
             </footer>
@@ -103,9 +101,9 @@
     @endif
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
-    <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js') }}" crossorigin="anonymous"></script>
+    {{-- <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js') }}" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/demo/chart-bar-demo.js') }}assets/demo/chart-area-demo.js"></script>
-    <script src="{{ asset('assets/demo/chart-bar-demo.js') }}"></script>
+    <script src="{{ asset('assets/demo/chart-bar-demo.js') }}"></script> --}}
     <script src="{{ asset('https://cdn.jsdelivr.net/npm/simple-datatables@latest') }}" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/js/datatables-simple-demo.js') }}"></script>
 </body>

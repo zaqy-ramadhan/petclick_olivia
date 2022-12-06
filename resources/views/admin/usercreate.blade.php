@@ -19,14 +19,14 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group mt-2">
                                             <strong >User Email:</strong>
-                                                <input type="text" name="email" class="form-control mt-2" placeholder="User Email">
+                                                <input type="text" name="email" class="form-control mt-2" placeholder="User Email" required>
                                             @error('name')
                                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group mt-2">
                                             <strong >User Name:</strong>
-                                                <input type="text" name="name" class="form-control mt-2" placeholder="User Name">
+                                                <input type="text" name="name" class="form-control mt-2" placeholder="User Name" required>
                                             @error('name')
                                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                             @enderror
@@ -54,14 +54,17 @@
                                         </div>
                                         <div class="form-group mt-2">
                                             <strong >User Role:</strong>
-                                                <input type="text" name="role" class="form-control mt-2" placeholder="User role">
+                                                <select name="role" id="" class="form-select mt-2">
+                                                    <option value="customer">Customer</option>
+                                                    <option value="admin">Admin</option>
+                                                </select>
                                             @error('name')
                                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group mt-2">
                                             <strong >User Password:</strong>
-                                                <input type="text" name="password" class="form-control mt-2" placeholder="User Password">
+                                                <input type="text" name="password" class="form-control mt-2" placeholder="User Password" required>
                                             @error('name')
                                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                             @enderror

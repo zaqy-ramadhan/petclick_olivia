@@ -10,21 +10,14 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/cssku.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
-
 </head>
 <body>
-	@extends('layouts.app')
-	@section('content')
   <section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-5">
+				<div class="col-md-6 text-center my-4">
 					{{-- <h2 class="heading-section">Login #04</h2> --}}
-          <a href="/"><img class="img-fluid" src="{{ URL::to('/assets/petclick_logo-dark.png') }}" style="width: 200px"></a>
+          			<a href="/"><img class="img-fluid" src="{{ URL::to('/assets/petclick_logo-dark.png') }}" style="width: 200px"></a>
 				</div>
 			</div>
 			<div class="row justify-content-center">
@@ -61,7 +54,7 @@
 				  	  @enderror
 		            </div>
 		            <div class="form-group">
-		            	<button type="submit" class="{{-- form-control --}}btn-block btn btn-success rounded px-3 ">{{ __('Login') }}</button>
+		            	<button type="submit" class="btn-block btn btn-success rounded px-3">{{ __('Login') }}</button>
 		            </div>
 					<div class="centering">
 						@if (Route::has('password.request'))
@@ -71,10 +64,10 @@
 						@endif
 					</div>
 		            <div class="form-group d-md-flex">
-						<div class="form-check w-50 text-left">
+						<div class="form-check w-50 text-left my-3">
 							<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-							<label class="form-check-label w-50 text-md-right" for="remember">
+							<label class="form-check-label text-md-right" for="remember">
 								{{ __('Remember Me') }}
 							</label>
 						</div>
@@ -103,7 +96,6 @@
 			</div>
 		</div>
 	</section>
-	@endsection
     {{-- <div class="container-fluid centering">
         <div class="card p-3" style="width: 18rem; ">
             <form>
@@ -124,5 +116,10 @@
               </form>
         </div>
     </div> --}}
+	<script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+
 </body>
 </html>

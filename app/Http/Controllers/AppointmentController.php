@@ -32,6 +32,15 @@ class AppointmentController extends Controller
         ]);
     }
 
+
+    public function recap()
+    {
+        $app = Appointment::with(['user', 'pet', 'service', 'session', 'clinic'])->get();
+        return view('admin.app-recap', [
+            "apps" => $app
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

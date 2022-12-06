@@ -46,7 +46,7 @@ class SessionController extends Controller
             ]);
             return redirect('/adm-session');
         }
-        return view('/adm-session');
+        return view('/adm-session')->with('status', 'New Data Added to Database');
     }
 
     /**
@@ -68,7 +68,7 @@ class SessionController extends Controller
      * @param  \App\Models\Session  $session
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
         $session = Session::findOrFail($id);
         return view('admin.sessionedit', ['session' => $session]);
@@ -87,7 +87,7 @@ class SessionController extends Controller
         $session->id = $request->id;
         $session->time = $request->time;
         $session->save();
-        return redirect('/adm-session');
+        return redirect('/adm-session')->with('status', 'Changes Saved');
     }
 
     /**
@@ -99,6 +99,6 @@ class SessionController extends Controller
     public function destroy(Session $session)
     {
         $session->delete();
-        return redirect('/adm-session');
+        return redirect('/adm-session')->with('statusdel', 'Data Deleted');
     }
 }
