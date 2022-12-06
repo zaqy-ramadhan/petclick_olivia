@@ -202,7 +202,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::put('/sessionedit/{id}', [SessionController::class, "update"]);
     Route::post('/session_create', [SessionController::class, "store"]);
 
-    Route::resource('users', userController::class);
+    Route::resource('user', userController::class);
     Route::get('/adm-user', [userController::class, "index"]);
     Route::get('/useredit/{id}', [userController::class, "editadm"]);
     Route::put('/useredit/{id}', [userController::class, "updateadm"]);
