@@ -238,11 +238,11 @@
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="https://images.unsplash.com/photo-1632236542159-809925d85fc0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="img_1">
+                <img src="https://images.unsplash.com/photo-1632236542159-809925d85fc0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="img_1" style="border-radius: 20px">
               </div>
               @foreach($galleries as $gallery)
               <div class="carousel-item">
-                <img src="{{ $gallery->img_link }}" class="d-block w-100" alt="{{ $gallery->img_title }}">
+                <img src="{{ $gallery->img_link }}" class="d-block w-100" alt="{{ $gallery->img_title }}" style="border-radius: 20px">
               </div>
               @endforeach
             </div>
