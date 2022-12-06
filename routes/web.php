@@ -28,10 +28,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/myprofile', function () {
-    return view('profile');
-});
-
 Route::get('/consultation', function () {
     return view('services.consultation');
 });
@@ -53,20 +49,12 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/view', function () {
-    return view('view');
-});
-
 Route::get('/log', function () {
     return view('log');
 });
 
 Route::get('/form', function () {
     return view('form');
-});
-
-Route::get('/myapp', function () {
-    return view('myappointment');
 });
 
 
@@ -83,10 +71,15 @@ Route::get('/surgery', [PetController::class, "surgery"]);
 Route::post('/create1', [AppointmentController::class, "store"]);
 Route::get('/myapp', [AppointmentController::class, "myapp"]);
 
-// Route::middleware(['auth', 'role:customer'])->group(function () {
-//     Route::get('/profileedit/{id}', [userController::class, "edit"]);
-//     Route::put('/profileedit/{id}', [userController::class, "update"]);
-// });
+Route::middleware(['auth', 'role:customer'])->group(function () {
+    Route::get('/myapp', function () {
+        return view('myappointment');
+    });
+
+    Route::get('/myprofile', function () {
+        return view('profile');
+    });
+});
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 

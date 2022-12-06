@@ -59,26 +59,6 @@ class AppointmentController extends Controller
      */
     public function store(StoreAppointmentRequest $request)
     {
-        // Appointment::create([
-        //     'user_id' => $request->user_id,
-        //     'address' => $request->address,
-        //     'city' => $request->city,
-        //     'app_date' => $request->app_date,
-        //     'session' => $request->session,
-        //     'branch' => $request->branch,
-        //     'notelp' => $request->notelp,
-        //     'petsex' => $request->petsex,
-        //     'petages' => $request->petages,
-        //     'petweights' => $request->petweights,
-        //     'detail' => $request->detail,
-        //     'pet_id' => $request->pet_id
-        // ]);
-        // return redirect('/')->with('status', 'Data telah tersimpan di database');
-        // ]);
-        // return redirect('/home')->with('status', 'Data telah tersimpan di database');
-        // dd($request->first_name);
-        // $id = Auth::id();
-        // dd($request->user_id);
         if ($request->isMethod('post')) {
             Appointment::create([
                 'user_id' => $request->user_id,
