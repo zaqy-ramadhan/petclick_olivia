@@ -59,7 +59,7 @@
         </div>
         <div class="modal-footer centering">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <form action="{{ route('users.destroy',$user->id) }}" method="Post">
+          <form action="{{ route('user.destroy',$user->id) }}" method="Post">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger">Delete</button>

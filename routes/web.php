@@ -57,7 +57,13 @@ Route::get('/form', function () {
     return view('form');
 });
 
+Route::get('/myapp', function () {
+    return view('myappointment');
+});
 
+Route::get('/myprofile', function () {
+    return view('profile');
+});
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -72,13 +78,6 @@ Route::post('/create1', [AppointmentController::class, "store"]);
 Route::get('/myapp', [AppointmentController::class, "myapp"]);
 
 Route::middleware(['auth', 'role:customer'])->group(function () {
-    Route::get('/myapp', function () {
-        return view('myappointment');
-    });
-
-    Route::get('/myprofile', function () {
-        return view('profile');
-    });
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

@@ -260,7 +260,7 @@
       @foreach($clinics as $clinic)
         <div class="col-sm-3 centering mt-2 mb-3">
           <div class="card shadow" style="width: 18rem; border-radius: 17px;">
-              <img style="height: 200px; border-radius:15px;" src="{{ $clinic->img_link }}" class="card-img-top" alt="grooming" style="border-radius: 17px;">
+              <img style="height: 200px; border-radius:15px;" src="{{ $clinic->img_link }}" class="img-fluid card-img-top" alt="grooming" style="border-radius: 17px;">
               <div class="card-body">
                 <h5 class="card-title">{{ $clinic->clinic_name }}</h5>
                 <p class="card-text">{{ $clinic->clinic_address }}</p>
