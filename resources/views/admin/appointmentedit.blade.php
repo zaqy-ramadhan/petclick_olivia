@@ -18,12 +18,13 @@
                                 @method('PUT')
                                 <div class="col">
                                     <select name="status" type="text" class="form-select" readonly aria-label="Default select example">
-                                        <option value="{{ $appointment->status }}">{{ $appointment->status }}</option>
+                                        {{-- <option value="{{ $appointment->status }}">{{ $appointment->status }}</option> --}}
                                         <option value="Appointment Cancelled">Appointment Cancelled</option>
                                         <option value="Appointment Scheduled">Appointment Scheduled</option>
                                         <option value="Appointment Ongoing">Appointment Ongoing</option>
                                         <option value="Appointment Done">Appointment Done</option>
                                     </select>
+                                    <label class="p-1 mt-2" for="">Current status : {{ $appointment->status}}</label>
                                 </div>
                                 {{-- <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -71,7 +72,7 @@
                                         </div>
                                     </div>
                                 </div> --}}
-                                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                                <button type="submit" class="btn btn-primary mt-2">Submit</button>
                                 @error('name')
                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                 @enderror

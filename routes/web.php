@@ -76,9 +76,12 @@ Route::get('/vaccine', [PetController::class, "vaccine"]);
 Route::get('/surgery', [PetController::class, "surgery"]);
 Route::post('/create1', [AppointmentController::class, "store"]);
 Route::get('/myapp', [AppointmentController::class, "myapp"]);
+Route::put('/profileedit/{id}', [userController::class, "update"]);
 
-Route::middleware(['auth', 'role:customer'])->group(function () {
-});
+// Route::middleware(['auth', 'role:customer'])->group(function () {
+// });
+
+Route::resource('user', userController::class);
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
@@ -194,7 +197,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::put('/sessionedit/{id}', [SessionController::class, "update"]);
     Route::post('/session_create', [SessionController::class, "store"]);
 
-    Route::resource('user', userController::class);
     Route::get('/adm-user', [userController::class, "index"]);
     Route::get('/useredit/{id}', [userController::class, "editadm"]);
     Route::put('/useredit/{id}', [userController::class, "updateadm"]);

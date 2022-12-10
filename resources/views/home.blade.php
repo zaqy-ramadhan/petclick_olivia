@@ -115,16 +115,6 @@
                 <option value="{{ Auth::user()->id }}" readonly>{{ Auth::user()->name }}</option>
               </select>
             </div>
-            {{-- <div class="mb-3">
-              <label class="form-label"><Address></Address></label>
-              <input name="address" type="text" class="form-control">
-              <div class="form-text">Your Address</div>
-            </div>
-            <div class="mb-3">
-            <label class="form-label">City</label>
-              <input name="city" type="text" class="form-control">
-              <div class="form-text">Input Your City Name</div>
-            </div> --}}
             <div class="mb-3 mt-3">
               <label class="form-label">Phone Number</label>
               <select name="notelp" type="text" class="form-select" readonly aria-label="Default select example">
@@ -208,16 +198,13 @@
         <p class="fs-1 fw-bolder centering" style="color: white;">OUR SERVICES</p>
         <div class="row m-5 centering">
           @foreach($services as $service)
-          <div class="col-sm-3 centering mt-2 mb-3">
+          <div class="col-sm-3 centering mt-2 mb-3" style="width: 18rem;">
             <div class="card shadow" style="width: 18rem; border-radius: 17px;">
                 <img src="{{ $service->img_link }}" class="card-img-top" alt="grooming" style="border-radius: 17px;">
                 <div class="card-body">
                   <h5 class="card-title" style="color: #323D51">{{ $service->services_name }}</h5>
-                  {{-- <p class="card-text" style="color: #323D51">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
-                  {{-- <a href="#" class="btn btn-success">See details</a> --}}
                 </div>
                 <a href="{{ $service->srv_routes }}"><button class="btn btn-success ms-3 mb-3">See details</button></a>
-                {{-- <a href="#" class="btn btn-success">See details</a> --}}
               </div>
         </div>
         @endforeach
@@ -258,7 +245,7 @@
     <h1 class="centering fs-1 fw-bolder" style="color: #016734;">LOCATIONS</h1>
     <div class="row m-5 centering">
       @foreach($clinics as $clinic)
-        <div class="col-sm-3 centering mt-2 mb-3">
+        <div class="col-sm-3 centering mt-2 mb-3" style="width: 18rem">
           <div class="card shadow" style="width: 18rem; border-radius: 17px;">
               <img style="height: 200px; border-radius:15px;" src="{{ $clinic->img_link }}" class="img-fluid card-img-top" alt="grooming" style="border-radius: 17px;">
               <div class="card-body">
@@ -323,11 +310,6 @@
               <div class="form-group mt-3">
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
               </div>
-              <!-- <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div> -->
               <div class="container centering">
                 <button class="btn btn-success text-center mt-3" type="submit" name="submit"> Send Message</button>  
               </div>
