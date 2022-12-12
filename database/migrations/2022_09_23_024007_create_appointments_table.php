@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date('app_date');
             $table->string('detail');
             $table->string('status')->default('Appointment Scheduled');
+            $table->integer('bill');
             $table->timestamps();
         });
     }

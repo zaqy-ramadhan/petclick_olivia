@@ -115,22 +115,21 @@
                 <option value="{{ Auth::user()->id }}" readonly>{{ Auth::user()->name }}</option>
               </select>
             </div>
-            <div class="mb-3 mt-3">
+            <div class="mb-3 mt-3" hidden>
               <label class="form-label">Phone Number</label>
               <select name="notelp" type="text" class="form-select" readonly aria-label="Default select example">
                 <option value="{{ Auth::user()->notelp }}" readonly>{{ Auth::user()->notelp }}</option>
               </select>
-              {{-- <input name="notelp" type="text" class="form-control" value="{{ Auth::user()->notelp }}"> --}}
               <div class="form-text">Input Your Phone Number</div>
             </div>
           </div>
           <div class="mb-3">
             <label class="form-label">Select Services</label>
-          <select name="service" class="form-select" aria-label="Default select example">
+            <select name="service" class="form-select" aria-label="Default select example">
             @foreach($services as $service)
             <option value="{{ $service->id }}">{{ $service->services_name }}</option>
-              @endforeach
-        </select>
+            @endforeach
+            </select>
           </div>
             <div class="mb-3">
               <label class="form-label">Appointment Date</label>

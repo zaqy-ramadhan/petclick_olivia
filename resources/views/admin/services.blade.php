@@ -23,8 +23,9 @@
             @endif
 <table class="table table-bordered" id="datatablesSimple">
 <tr>
-<th>Services_ID</th>
-<th>Services_Name</th>
+<th>Services ID</th>
+<th>Services Name</th>
+<th>Services Price</th>
 <th>Routes</th>
 
 <th width="280px">Action</th>
@@ -33,6 +34,7 @@
 <tr>
 <td>{{ $service->id }}</td>
 <td>{{ $service->services_name }}</td>
+<td>{{ $service->price }}</td>
 <td>{{ $service->srv_routes }}</td>
 <td>
     <a class="btn btn-primary" href="servicesedit/{{ $service->id }}">Edit</a>

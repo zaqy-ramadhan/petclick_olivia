@@ -25,8 +25,9 @@
           <th>Pet</th>
           <th>Clinic</th>
           <th>Detail</th>
+          <th>Bill</th>
           <th>Status</th>
-          <th>Action</th>
+          <th style="width: 150px">Action</th>
           </tr>
           @foreach ($apps as $app)
           <tr>
@@ -38,10 +39,17 @@
           <td>{{ $app->pet['pet_name'] }}</td>
           <td>{{ $app->clinic['clinic_name'] }}</td>
           <td>{{ $app->detail }}</td>
+          <td>${{ $app->bill }}</td>
           <td>{{ $app->status }}</td>
           <td>
-              <a class="btn btn-primary" href="appedit/{{ $app->id }}">Change Status</a>
-              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delmodal">Delete</button>
+              <a class="btn btn-primary mt-1" href="appedit/{{ $app->id }}">Edit</a>
+              <button type="button" class="btn btn-danger mt-1" data-bs-toggle="modal" data-bs-target="#delmodal">Delete</button>
+              @foreach($receipts->where('app_id',$app->id) as $receipt)
+              @if($receipt->app_id===$app->id)
+              <a href="storage/{{ $receipt->receipt }}" target="_blank" class="btn btn-warning mt-1" style="width: 130px">Receipt</a>
+              <a href="invoice/{{ $app->id }}" target="_blank" class="btn btn-success mt-1" style="width: 130px">Invoice</a>
+              @endif
+              @endforeach
           </td>
           </tr>
           @endforeach

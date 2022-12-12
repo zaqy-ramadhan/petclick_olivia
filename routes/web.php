@@ -8,6 +8,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,15 @@ Route::get('/myprofile', function () {
     return view('profile');
 });
 
+Route::get('/payment', function () {
+    return view('payment');
+});
+
+
+// Route::get('/receipt', function () {
+//     return view('receipt');
+// });
+
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -77,6 +87,10 @@ Route::get('/surgery', [PetController::class, "surgery"]);
 Route::post('/create1', [AppointmentController::class, "store"]);
 Route::get('/myapp', [AppointmentController::class, "myapp"]);
 Route::put('/profileedit/{id}', [userController::class, "update"]);
+Route::get('/invoice/{id}', [AppointmentController::class, "invoice"]);
+Route::get('/payment/{id}', [AppointmentController::class, "payment"]);
+Route::post('/receipt/{id}', [PaymentController::class, "store"]);
+
 
 // Route::middleware(['auth', 'role:customer'])->group(function () {
 // });

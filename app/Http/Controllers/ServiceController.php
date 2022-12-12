@@ -53,6 +53,7 @@ class ServiceController extends Controller
                 'services_name' => $request->name,
                 'img_link' => $request->img_link,
                 'srv_routes' => $request->routes,
+                'price' => $request->price,
             ]);
             return redirect('/adm-services')->with('status', 'New Data Added to Database');
         }
@@ -98,6 +99,7 @@ class ServiceController extends Controller
         $service->id = $request->id;
         $service->services_name = $request->name;
         $service->img_link = $request->img_link;
+        $service->price = $request->price;
         $service->save();
         return redirect('/adm-services')->with('status', 'Changes Saved');
     }

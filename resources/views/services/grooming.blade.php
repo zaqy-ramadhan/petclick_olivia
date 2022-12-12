@@ -21,13 +21,16 @@
             <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" class="card-img-top" alt="grooming" style="border-radius: 17px;">
             <div class="card-body">
               <h5 class="card-title" style="color: #323D51">Grooming</h5>
+              @foreach($services->where('id',1) as $service)@endforeach
+              <p>${{ $service->price }}</p>
             </div>
             <a><button class="btn btn-success ms-3 mb-3" data-bs-toggle="modal" data-bs-target="#appointmentModal" >Make Appointement</button></a>
+            </div>
           </div>
+          <div class="col-sm-3 centering mt-3 mx-4">
+            <p>Our animal care workers are ready to take care of your animals gently with love like : bathing animals,take care of your pet's fur and etc</p>
+          </div> 
         </div>
-        <div class="col-sm-3 centering mt-3 mx-4">
-          <p>Our animal care workers are ready to take care of your animals gently with love like : bathing animals,take care of your pet's fur and etc</p>
-        </div>  
       </div>
     </div>
   </div>
@@ -57,7 +60,7 @@
                     <option value="{{ Auth::user()->id }}" readonly>{{ Auth::user()->name }}</option>
                   </select>
                 </div>
-                <div class="mb-3 mt-3">
+                <div class="mb-3 mt-3" hidden>
                   <label class="form-label">Phone Number</label>
                   <select name="notelp" type="text" class="form-select" readonly aria-label="Default select example">
                     <option value="{{ Auth::user()->notelp }}" readonly>{{ Auth::user()->notelp }}</option>

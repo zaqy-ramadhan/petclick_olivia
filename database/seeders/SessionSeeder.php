@@ -16,15 +16,15 @@ class SessionSeeder extends Seeder
     public function run()
     {
         session::create([
-            'time' => '08:00-12:00 (1st Session)'
+            'time' => '08:00-12:00'
         ]);
 
         session::create([
-            'time' => '13:00-17:00 (2nd Session)'
+            'time' => '13:00-17:00'
         ]);
 
         session::create([
-            'time' => '18:00-22:00 (3rd Session)'
+            'time' => '18:00-22:00'
         ]);
     }
 }

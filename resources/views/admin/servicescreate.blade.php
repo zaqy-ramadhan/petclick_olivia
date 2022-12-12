@@ -39,17 +39,18 @@
                                         <div class="form-group mt-2">
                                             <strong >Image Link:</strong>
                                                 <input type="text" name="img_link" class="form-control mt-2" placeholder="Image Link" required>
-                                            @error('name')
-                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                                            @enderror
-                                            <div class="form-group mt-2">
-                                                <strong >Routes:</strong>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <strong >Price :</strong>
+                                                <input type="text" name="price" class="form-control mt-2" placeholder="Price" required>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <strong >Routes:</strong>
                                                     <input type="text" name="routes" class="form-control mt-2" placeholder="Insert Routes" required>
                                                 @error('name')
                                                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mt-3">Submit</button>

@@ -21,6 +21,8 @@
             <img src="https://d2zp5xs5cp8zlg.cloudfront.net/image-42128-800.jpg" alt="grooming" style="border-radius: 17px;">
             <div class="card-body">
               <h5 class="card-title" style="color: #323D51">Small Surgery</h5>
+              @foreach($services->where('id',4) as $service)@endforeach
+              <p>${{ $service->price }}</p>
             </div>
             <a><button class="btn btn-success ms-3 mb-3" data-bs-toggle="modal" data-bs-target="#appointmentModal">Make Appointement</button></a>
           </div>
@@ -57,7 +59,7 @@
                     <option value="{{ Auth::user()->id }}" readonly>{{ Auth::user()->name }}</option>
                   </select>
                 </div>
-                <div class="mb-3 mt-3">
+                <div class="mb-3 mt-3" hidden>
                   <label class="form-label">Phone Number</label>
                   <select name="notelp" type="text" class="form-select" readonly aria-label="Default select example">
                     <option value="{{ Auth::user()->notelp }}" readonly>{{ Auth::user()->notelp }}</option>

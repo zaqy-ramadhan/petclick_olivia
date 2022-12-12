@@ -38,6 +38,10 @@
                                             @enderror
                                         </div>
                                         <div class="form-group mt-2">
+                                            <strong >Price :</strong>
+                                                <input type="text" name="price" value="{{ $service->price }}" class="form-control mt-2" placeholder="price" required>
+                                        </div>
+                                        <div class="form-group mt-2">
                                             <strong >Img Link:</strong>
                                                 <input type="text" name="img_link" value="{{ $service->img_link }}" class="form-control mt-2" placeholder="Image Link" required>
                                             @error('img_link')

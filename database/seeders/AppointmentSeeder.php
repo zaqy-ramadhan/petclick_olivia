@@ -22,7 +22,8 @@ class AppointmentSeeder extends Seeder
             'clinic_id' => 2,
             'session_id' => 3,
             'app_date' => '2022-11-17',
-            'detail' => 'Tidak mau makan'
+            'detail' => 'Tidak mau makan',
+            'bill' => 10
         ]);
 
         Appointment::create([
@@ -32,7 +33,8 @@ class AppointmentSeeder extends Seeder
             'clinic_id' => 1,
             'session_id' => 1,
             'app_date' => '2022-11-17',
-            'detail' => 'Batuk-batuk'
+            'detail' => 'Batuk-batuk',
+            'bill' => 10
         ]);
 
         Appointment::create([
@@ -42,7 +44,8 @@ class AppointmentSeeder extends Seeder
             'clinic_id' => 1,
             'session_id' => 1,
             'app_date' => '2022-11-17',
-            'detail' => 'sakit kepala'
+            'detail' => 'sakit kepala',
+            'bill' => 10
         ]);
 
         Appointment::create([
@@ -52,7 +55,8 @@ class AppointmentSeeder extends Seeder
             'clinic_id' => 3,
             'session_id' => 2,
             'app_date' => '2022-11-17',
-            'detail' => 'masuk angin'
+            'detail' => 'masuk angin',
+            'bill' => 10
         ]);
     }
 }

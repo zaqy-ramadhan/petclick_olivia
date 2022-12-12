@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use App\Http\Requests\StoreappointmentRequest;
 use App\Http\Requests\UpdateappointmentRequest;
+use App\Models\service;
+use App\Models;
+use App\Models\payment;
 use App\Models\Services;
 use Illuminate\Http\Request;
 
@@ -18,17 +21,21 @@ class AppointmentController extends Controller
      */
     public function index()
     {
+        $receipt = payment::all();
         $app = Appointment::with(['user', 'pet', 'service', 'session', 'clinic'])->get();
         return view('admin.appointment', [
-            "apps" => $app
+            "apps" => $app,
+            "receipts" => $receipt
         ]);
     }
 
     public function myapp()
     {
+        $rec = payment::all();
         $appointment = Appointment::with(['service', 'session', 'clinic'])->get();
         return view('myappointment', [
-            "appointments" => $appointment
+            "appointments" => $appointment,
+            "rec" => $rec
         ]);
     }
 
@@ -38,6 +45,24 @@ class AppointmentController extends Controller
         $app = Appointment::with(['user', 'pet', 'service', 'session', 'clinic'])->get();
         return view('admin.app-recap', [
             "apps" => $app
+        ]);
+    }
+
+    public function invoice($id)
+    {
+        $app = Appointment::with(['user', 'pet', 'service', 'session', 'clinic'])->get();
+        return view('invoice', [
+            "apps" => $app,
+            "id" => $id
+        ]);
+    }
+
+    public function payment($id)
+    {
+        $app = Appointment::with(['user', 'pet', 'service', 'session', 'clinic'])->get();
+        return view('payment', [
+            "apps" => $app,
+            "id" => $id,
         ]);
     }
 
@@ -57,8 +82,9 @@ class AppointmentController extends Controller
      * @param  \App\Http\Requests\StoreAppointmentRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAppointmentRequest $request)
+    public function store(Request $request)
     {
+        $bill = service::findOrFail($request->service);
         if ($request->isMethod('post')) {
             Appointment::create([
                 'user_id' => $request->user_id,
@@ -68,8 +94,9 @@ class AppointmentController extends Controller
                 'detail' => $request->detail,
                 'pet_id' => $request->pet_id,
                 'service_id' => $request->service,
+                'bill' => $bill->price,
             ]);
-            return redirect('/')->with('status', 'New Data Added to Database');
+            return redirect('/');
         }
         return view('/home');
     }
@@ -97,7 +124,9 @@ class AppointmentController extends Controller
     {
         $appointment = Appointment::findOrFail($id);
         // dd($pet);
-        return view('admin.appointmentedit', ['appointment' => $appointment]);
+        return view('admin.appointmentedit', [
+            'appointment' => $appointment,
+        ]);
     }
 
     /**
@@ -111,8 +140,9 @@ class AppointmentController extends Controller
     {
         $appointment = Appointment::findOrFail($id);
         $appointment->status = $request->status;
+        $appointment->bill = $request->bill;
         $appointment->save();
-        return redirect('/adm-app')->with('status', 'Status Updated');
+        return redirect('/adm-app')->with('status', 'Data Updated');
     }
 
     /**

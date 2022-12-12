@@ -12,7 +12,8 @@ class service extends Model
         'id',
         'services_name',
         'img_link',
-        'srv_routes'
+        'srv_routes',
+        'price'
     ];
     public function services()
     {

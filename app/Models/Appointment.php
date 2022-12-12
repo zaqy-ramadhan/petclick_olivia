@@ -20,7 +20,8 @@ class Appointment extends Model
         'user_id',
         'detail',
         'service_id',
-        'status'
+        'status',
+        'bill',
     ];
 
     public function appointments()
@@ -52,4 +53,14 @@ class Appointment extends Model
     {
         return $this->belongsTo(Session::class);
     }
+
+    public function pets()
+    {
+        return $this->hasMany(payment::class);
+    }
+
+    // public function app_serv()
+    // {
+    //     return $this->belongsToMany(service::class, 'app_serv');
+    // }
 }
